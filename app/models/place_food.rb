@@ -1,0 +1,2 @@
+class PlaceFood < ApplicationRecord
+end

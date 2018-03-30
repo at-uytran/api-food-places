@@ -1,0 +1,2 @@
+class SubscribePlace < ApplicationRecord
+end
