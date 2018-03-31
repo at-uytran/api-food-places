@@ -4,6 +4,7 @@ class CreateFoods < ActiveRecord::Migration[5.1]
       t.string :name
       t.float :price
       t.integer :type, default: 0
+      t.references :food_category, index: true
 
       t.timestamps
     end

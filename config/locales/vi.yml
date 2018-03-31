@@ -1,0 +1,6 @@
+vi:
+  title: "Trang web chia sẻ và chỉ dẫn ẩm thực"
+  places:
+    index:
+    load_place:
+      not_found: "Không tìm thấy địa điểm"

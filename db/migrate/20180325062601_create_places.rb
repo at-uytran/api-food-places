@@ -9,7 +9,8 @@ class CreatePlaces < ActiveRecord::Migration[5.1]
       t.time :close_time
       t.text :coordinates
       t.integer :status
-      t.references :category, index: true
+      t.references :place_category, index: true
+      t.references :location, index: true
 
       t.datetime :deleted_at
       t.timestamps
