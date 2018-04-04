@@ -13,4 +13,6 @@ class Place < ApplicationRecord
   has_many :collections, through: :collection_places
 
   enum status: {pending: 0, approved: 1}
+
+  scope :created_desc, ->{order name: :desc}
 end

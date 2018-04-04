@@ -3,6 +3,7 @@ class CreatePlaces < ActiveRecord::Migration[5.1]
     create_table :places do |t|
       t.string :name
       t.string :address
+      t.text :descriptions
       t.references :province
       t.references :owner, index: true
       t.time :open_time

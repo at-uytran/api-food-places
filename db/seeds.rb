@@ -58,12 +58,13 @@ p "fake places"
 20.times do |n|
   place = Place.create! name: "Place #{n+1}",
     address: FFaker::Address.street_address,
+    descriptions: FFaker::Lorem.paragraph[0..15],
     owner_id: User.first.id,
     open_time: Time.now.strftime("%I:%M%p"),
     close_time: 8.hours.from_now.strftime("%I:%M%p"),
     coordinates: FFaker::Geolocation.lat,
     place_category_id: PlaceCategory.first.id
-  place.place_images.create! description: FFaker::Lorem.paragraph,
+  place.place_images.create! descriptions: FFaker::Lorem.paragraph[0..15],
     image_url: "public/uploads/img001.jpg"
   place.create_location address: "45 Ngô Thì Nhậm",
     district_id: @quan_lien_chieu.id,
