@@ -1,4 +1,4 @@
-require_relative 'boot'
+require_relative "boot"
 
 require "rails"
 # Pick the frameworks you want:
@@ -13,7 +13,7 @@ require "action_cable/engine"
 require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
-# you've limited to :test, :development, or :production.
+# you"ve limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
 module ApiBackend
@@ -43,5 +43,9 @@ module ApiBackend
     #   "Access-Control-Allow-Origin" => "http://localhost:4203/",
     #   "Access-Control-Request-Method" => %w{GET POST OPTIONS}.join(",")
     # }
+
+    # config for i18n
+    config.i18n.load_path += Dir[Rails.root.join("my", "locales", "*.{rb,yml}").to_s]
+    config.i18n.default_locale = :vi
   end
 end

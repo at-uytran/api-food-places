@@ -77,11 +77,14 @@ ActiveRecord::Schema.define(version: 20180330094038) do
     t.string "name"
     t.float "price", limit: 24
     t.integer "type", default: 0
+    t.bigint "food_category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["food_category_id"], name: "index_foods_on_food_category_id"
   end
 
   create_table "locations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "address"
     t.text "coordinates"
     t.bigint "district_id"
     t.bigint "place_id"
@@ -134,7 +137,7 @@ ActiveRecord::Schema.define(version: 20180330094038) do
     t.bigint "place_id"
     t.string "description"
     t.bigint "comment_id"
-    t.string "img_url"
+    t.string "image_url"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -151,12 +154,14 @@ ActiveRecord::Schema.define(version: 20180330094038) do
     t.time "close_time"
     t.text "coordinates"
     t.integer "status"
-    t.bigint "category_id"
+    t.bigint "place_category_id"
+    t.bigint "location_id"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_places_on_category_id"
+    t.index ["location_id"], name: "index_places_on_location_id"
     t.index ["owner_id"], name: "index_places_on_owner_id"
+    t.index ["place_category_id"], name: "index_places_on_place_category_id"
     t.index ["province_id"], name: "index_places_on_province_id"
   end
 

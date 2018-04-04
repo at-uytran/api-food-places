@@ -1,15 +1,24 @@
-class Api::V1::SessionsController < ApplicationController
-  def create
-    debugger
-  end
+module Api
+  module V1
+    class SessionsController < ApplicationController
+      before_action :authenticated?, only: %i(destroy update create)
+      before_action :load_user, only: %i(destroy)
 
-  def destroy
+      def create
+        @user = User.find_by email: params[:email]
+      end
 
-  end
+      def destroy; end
 
-  private
+      private
 
-  def load_user
-    @user = User.find_by email: params[:email].downcase
+      def user_params
+        params.permit(:email, :password, :remember)
+      end
+
+      def load_user
+        @user = User.find_by email: params[:email].downcase
+      end
+    end
   end
 end

@@ -1,7 +1,71 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+p "create admin"
+User.create! name: "admin",
+             email: "admin@gmail.com",
+             password: "123456",
+             address: "41 Ngo Thi Nham",
+             descriptions: "askdjlajsdljal"
+
+p "create users"
+10.times do |n|
+  User.create! name: FFaker::NameVN.name,
+               email: "email#{n+1}@gmail.com",
+               password: "123456",
+               address: "41 Ngo Thi Nham",
+               descriptions: "askdjlajsdljal"
+end
+
+p "fake place categories"
+@an_vat = PlaceCategory.create! name: "Ăn vặt"
+@cafe = PlaceCategory.create! name: "Cà phê"
+@nha_hang = PlaceCategory.create! name: "Nhà hàng"
+@quan_an = PlaceCategory.create! name: "Quán ăn"
+@beer = PlaceCategory.create! name: "Beer club"
+
+p "fake food categories"
+@am_thuc_mien_nam = FoodCategory.create! name: "Miền nam"
+@am_thuc_mien_bac = FoodCategory.create! name: "Miền bắc"
+
+
+p "Fake provinces"
+@da_nang = Province.create! name: "Da Nang",
+  descriptions: "Thành phố du lịch với nhiều bãi biển đẹp và nhiều món ăn ngon"
+
+p "Fake districts"
+@quan_hai_chau = District.create! name: "Hải Châu",
+  descriptions: "Quận Hải Châu",
+  province_id: @da_nang.id
+
+@quan_ngu_hanh_son = District.create! name: "Ngũ Hành Sơn",
+  descriptions: "Quân Ngũ Hành Sơn",
+  province_id: @da_nang.id
+
+@quan_cam_le = District.create! name: "Cẩm Lệ",
+  descriptions: "Quận Cẩm Lệ",
+  province_id: @da_nang.id
+
+@quan_lien_chieu = District.create! name: "Liên Chiểu",
+  descriptions: "Quận Liên Chiểu",
+  province_id: @da_nang.id
+
+@quan_thanh_khe = District.create! name: "Thanh Khê",
+  descriptions: "Quận Thanh Khê",
+  province_id: @da_nang.id
+
+
+# @41_ngo_thi_nham = locations.create! address: "45 Ngô Thì Nhậm", district_id: @quan_lien_chieu.id
+
+p "fake places"
+20.times do |n|
+  place = Place.create! name: "Place #{n+1}",
+    address: FFaker::Address.street_address,
+    owner_id: User.first.id,
+    open_time: Time.now.strftime("%I:%M%p"),
+    close_time: 8.hours.from_now.strftime("%I:%M%p"),
+    coordinates: FFaker::Geolocation.lat,
+    place_category_id: PlaceCategory.first.id
+  place.place_images.create! description: FFaker::Lorem.paragraph,
+    image_url: "public/uploads/img001.jpg"
+  place.create_location address: "45 Ngô Thì Nhậm",
+    district_id: @quan_lien_chieu.id,
+    coordinates: FFaker::Geolocation.lat
+end
