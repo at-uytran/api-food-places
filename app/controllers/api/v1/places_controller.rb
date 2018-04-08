@@ -2,9 +2,11 @@ module Api
   module V1
     class PlacesController < ApplicationController
       before_action :load_place, only: %i(show)
+
       def index
-        @places = Place.all
-        render json: {places: @places}
+        @places = Place.created_desc
+        @places = create_serialize @places
+        render json: {message: "", data: {places: @places}}, status: 200
       end
 
       def show

@@ -5,12 +5,18 @@ module Api
 
       def index
         @users = User.all
+        @users = create_serialize @users
         render json: {message: "", data: {users: @users}}, status: 200
       end
 
-      def show; end
+      def show
+        @user = create_serialize @user
+        render json: {message: "", data: {user: @user}}, status: :ok
+      end
 
-      def new; end
+      def new
+        @user = User.new user_params
+      end
 
       def update
         @user.update_attributes :user_params
