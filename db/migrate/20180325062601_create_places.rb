@@ -8,8 +8,10 @@ class CreatePlaces < ActiveRecord::Migration[5.1]
       t.references :owner, index: true
       t.time :open_time
       t.time :close_time
+      t.float :ship_price
       t.text :coordinates
       t.integer :status
+      t.text :image_url
       t.references :place_category, index: true
       t.references :location, index: true
 

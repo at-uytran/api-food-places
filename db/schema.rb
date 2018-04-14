@@ -124,13 +124,13 @@ ActiveRecord::Schema.define(version: 20180330094038) do
   end
 
   create_table "place_foods", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "place_id_id"
+    t.bigint "place_id"
     t.bigint "food_id"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["food_id"], name: "index_place_foods_on_food_id"
-    t.index ["place_id_id"], name: "index_place_foods_on_place_id_id"
+    t.index ["place_id"], name: "index_place_foods_on_place_id"
   end
 
   create_table "place_images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -153,8 +153,10 @@ ActiveRecord::Schema.define(version: 20180330094038) do
     t.bigint "owner_id"
     t.time "open_time"
     t.time "close_time"
+    t.float "ship_price", limit: 24
     t.text "coordinates"
     t.integer "status"
+    t.text "image_url"
     t.bigint "place_category_id"
     t.bigint "location_id"
     t.datetime "deleted_at"
