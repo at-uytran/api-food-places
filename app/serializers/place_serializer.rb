@@ -19,7 +19,6 @@ class PlaceSerializer < ActiveModel::Serializer
     :rating_average
 
   belongs_to :place_category
-  has_many :comments
 
   def rating_average
     return I18n.t("places.rating_average.n_a") unless object.user_ratings.nil?

@@ -7,7 +7,8 @@ User.create! name: "admin",
              email: "admin@gmail.com",
              password: "123456",
              address: "41 Ngo Thi Nham",
-             descriptions: "askdjlajsdljal"
+             descriptions: "askdjlajsdljal",
+             avatar: "http://res.cloudinary.com/uytran113/image/upload/v1524024623/user-avatar-default.jpg"
 
 p "create users"
 10.times do |n|
@@ -15,7 +16,8 @@ p "create users"
                email: "email#{n+1}@gmail.com",
                password: "123456",
                address: "41 Ngo Thi Nham",
-               descriptions: "askdjlajsdljal"
+               descriptions: "askdjlajsdljal",
+               avatar: "http://res.cloudinary.com/uytran113/image/upload/v1524024623/user-avatar-default.jpg"
 end
 
 p "fake place categories"
@@ -55,8 +57,16 @@ p "Fake districts"
   descriptions: "Quận Thanh Khê",
   province_id: @da_nang.id
 
-
 # @41_ngo_thi_nham = locations.create! address: "45 Ngô Thì Nhậm", district_id: @quan_lien_chieu.id
+
+amthuc = FoodCategory.create!(name: "Âm thực")
+
+# fake food categories
+a_t_mien_trung = FoodCategory.create!(name: "Âm thực miền Trung",
+  parent_id: amthuc.id)
+
+a_t_mien_nam = FoodCategory.create!(name: "Âm thực miền Nam",
+  parent_id: amthuc.id)
 
 p "fake places"
 20.times do |n|
@@ -76,4 +86,14 @@ p "fake places"
     district_id: @quan_lien_chieu.id,
     coordinates: FFaker::Geolocation.lat
   place.comments.create!(content: "Commented Commented Commented", user_id: 1)
+  11.times do |n|
+    place.foods.create!(name: "Gà nướng",
+      food_type: 0,
+      price: 70000,
+      food_category_id: a_t_mien_nam.id)
+    place.foods.create!(name: "Bia Heineken",
+      food_type: 1,
+      price: 30000,
+      food_category_id: 1)
+  end
 end
