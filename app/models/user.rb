@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :user_notifications, dependent: :destroy
   has_one :user_settings, dependent: :destroy
   has_many :notifications, through: :user_notifications
+  has_many :places, dependent: :destroy
 
   def update_auth_token
     self.auth_token = SecureRandom.urlsafe_base64

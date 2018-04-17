@@ -10,7 +10,8 @@ module Api
       end
 
       def show
-        render json: {place: @place}
+        @place = create_serialize @place
+        render json: {message: "", data: {place: @place}}, status: 200
       end
 
       private
@@ -18,7 +19,7 @@ module Api
       def load_place
         @place = Place.find_by id: params[:id]
         return if @place
-        render json: {message: t("places.load_place.not_found")}
+        render json: {message: I18n.t("places.load_place.not_found")}
       end
     end
   end

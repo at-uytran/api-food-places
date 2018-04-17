@@ -11,8 +11,10 @@ class Place < ApplicationRecord
   belongs_to :place_category
   has_many :foods, through: :place_foods
   has_many :collections, through: :collection_places
+  belongs_to :owner, class_name: User.name
 
   enum status: {pending: 0, approved: 1}
+  delegate :name, :email, to: :owner, prefix: true
 
   scope :created_desc, ->{order name: :desc}
 end
