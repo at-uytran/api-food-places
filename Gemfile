@@ -1,4 +1,3 @@
-
 source "https://rubygems.org"
 
 git_source(:github) do |repo_name|
@@ -13,6 +12,8 @@ gem "bcrypt", "~> 3.1.7"
 gem "rack-cors"
 gem "ffaker"
 gem "active_model_serializers", "~> 0.10.0"
+gem "ransack"
+gem "will_paginate"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]

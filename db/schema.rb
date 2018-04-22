@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 20180330094038) do
   create_table "foods", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.float "price", limit: 24
-    t.integer "type", default: 0
+    t.integer "food_type", default: 0
     t.bigint "food_category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -232,6 +232,7 @@ ActiveRecord::Schema.define(version: 20180330094038) do
     t.string "address"
     t.string "coordinates"
     t.string "descriptions"
+    t.text "avatar"
     t.integer "status", default: 0
     t.string "password_digest"
     t.string "auth_digest"
